@@ -2,12 +2,12 @@ package singleton;
 
 import java.util.Objects;
 
-public class Printer {
-    private static Printer printer;
+public class Printer2 {
+    private static Printer2 printer;
 
     public int number = 0;
 
-    private Printer() {
+    private Printer2() {
     }
 
     //double check locking
@@ -16,11 +16,16 @@ public class Printer {
     //초기화가 덜된 객체를 얻을 가능성이 있다.
     //또한 코드가 장황해지고 보기 좋지 않다.
     //불확실한 성능 향상보다는 안정적인 코드가 더나은 선택이다.
-    public static Printer getInstance() {
+    public static Printer2 getInstance() {
         if (Objects.isNull(printer)) {
-            synchronized (Printer.class) {
+            synchronized (Printer2.class) {
                 System.out.println("객체 생성!!");
-                printer = new Printer();
+                try {
+                    Thread.sleep(1000);
+                    printer = new Printer2();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -30,9 +35,9 @@ public class Printer {
     //Early Initialzation
     //객체를 미리 생성해서 사용하는 방법
     //코드가 심플해지지만, 객체가 사용되지 않는다면 불필요한 자원 낭비가됨
-    private static Printer printer2 = new Printer();
+    private static Printer2 printer2 = new Printer2();
 
-    public static Printer getInstance2() {
+    public static Printer2 getInstance2() {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
