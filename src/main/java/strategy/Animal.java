@@ -1,9 +1,16 @@
 package strategy;
 
+import strategy.move.MoveStrategy;
+
 public abstract class Animal {
     public String name;
+    public MoveStrategy moveStrategy;
+
+    public void setMoveStrategy(MoveStrategy moveStrategy) {
+        this.moveStrategy = moveStrategy;
+    }
 
     public void move(){
-        System.out.println("움직인다");
+        moveStrategy.move(this.name);
     }
 }
