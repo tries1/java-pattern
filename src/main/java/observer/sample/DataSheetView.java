@@ -1,4 +1,4 @@
-package observer;
+package observer.sample;
 
 import java.util.List;
 

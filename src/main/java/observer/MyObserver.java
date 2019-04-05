@@ -1,4 +1,5 @@
 package observer;
 
-public class MyObserver {
+public interface MyObserver {
+    void update();
 }
